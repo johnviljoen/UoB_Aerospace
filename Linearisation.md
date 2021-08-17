@@ -2,7 +2,7 @@
 >Links: 
 >[[050100 Engineering Tools]]
 
-Given a general nonlinear function:
+Given a general continuous nonlinear function:
 
 $$\dot{x} = f(x,u)$$
 
