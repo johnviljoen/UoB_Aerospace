@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+int main () {
+
+  // variable declarations
+  FILE *fileid1;
+  int ii;
+  double var1, var2;
+
+  // open file for reading
+  fileid1=fopen("filein.dat","r");
+
+  // only continue if file opens ok
+  if(fileid1 != NULL) {
+
+    // read lines from file
+    for (ii=1; ii<=3; ii=ii+1) {
+      fscanf(fileid1,"%lf %lf",&var1, &var2);
+
+      printf("%8.5lf %8.5lf\n",var1, var2);
+    }
+
+    // close file that was read from
+    fclose(fileid1);
+
+  } else {
+    // if file doesn't open ok, then tell user there is an error
+    printf("ERROR: file not opening\n");
+  }
+
+  return(0);

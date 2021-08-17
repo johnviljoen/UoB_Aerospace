@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+
+/* Function to get random number */
+double r2() {
+  return (double)rand() / (double)RAND_MAX ;
+}
+
+/* Main program */
+int main () {
+
+  double xdart, ydart, radius, randnum, rtest, errorexit;
+  double piest, ncirc, nsquare, error, pireal, i, nmax;
+  srand(time(NULL));
+
+  /* Constants */
+  /* Circle has specified radius, and is centred at (0,0) */
+  radius=1.0;
+  errorexit=0.00000001;
+  nmax=1000;
+
+  /* Initialise counters for number of darts in square and circle */
+  ncirc=0.0; nsquare=0.0;
+
+  /* Real value of pi */
+  pireal=4.0*atan(1.0);
+
+  /* Throw lots of darts until either error is below specified error */
+  /*   or maximum number reached */
+  for(i=1;i<=nmax;i++) {
+
+    /* Throw dart randomly */
+    randnum = r2();
+    xdart=-radius+(randnum*2.0*radius);
+    randnum = r2();
+    ydart=-radius+(randnum*2.0*radius);
+    rtest=pow((xdart*xdart + ydart*ydart),0.5);
+
+    /* We know this dart has to have landed in the square */
+    nsquare=nsquare+1.0;
+
+    /* Test if the dart is in the circle */
+    if(rtest <= radius){
+      ncirc=ncirc+1.0;
+    }
+
+    /* Update estimate of pi and error */
+    piest=4.0*ncirc/nsquare;
+    error=fabs(piest-pireal)/pireal;
+
+    /* Print pi estimate */
+    printf("%lf  %10.8lf\n",nsquare,piest);
+
+    /* Exit if error has fallen below tolerance */
+    if (error < errorexit) {
+      break;
+    }
+
+  } 
+
+  return(0);
+}

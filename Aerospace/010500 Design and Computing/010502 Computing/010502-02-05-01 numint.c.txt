@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<math.h>
+
+// FUNCTION TO EVALUATE F(X)
+double myfunc (double x) {
+  double fval;
+  fval=2.0+(0.05*x*x)+sin(x);
+  return(fval);
+}
+ 
+//CORRECT INTEGRAL
+double myfuncint (double x) {
+  double fval;
+  fval=(2.0*x)+(0.05*x*x*x/3.0)-cos(x);
+  return(fval);
+}
+
+// MAIN FUNCTION
+int main () {
+
+  //VARIABLE DECS
+  int N, ii;
+  double a, b, deltax, xlower, xupper, flower, fupper, traparea, totalarea, realint;
+
+  //CONSTANTS
+  a=0.0; b=10.0; N=1000;
+  deltax=(b-a)/N;
+
+  totalarea=0.0;
+
+  //LOOP OVER ALL TRAPS
+  for(ii=1;ii<=N;ii=ii+1){
+
+    //TRAP BOUNDS
+    xlower=(ii-1)*deltax;
+    xupper=ii*deltax;
+
+    //TRAPEZIUM FUNCTION VALUES
+    flower=myfunc(xlower);
+    fupper=myfunc(xupper);
+
+    //TRAP AREA
+    traparea=0.5*deltax*(flower+fupper);
+
+    //SUM TRAPS
+    totalarea=totalarea+traparea;
+
+//    printf("%lf %lf %lf %lf\n",xlower,xupper,flower,fupper);
+
+  }
+
+  //CALCULATE REAL INTEGARL VALUE
+  realint=myfuncint(b)-myfuncint(a);
+
+  //PRINT FINAL ANSWER TO USER
+  printf("%lf\n",totalarea);
+  printf("%lf\n",realint);
+
+  return(0);
+}

@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+int main () {
+
+	//Variable declarations
+	FILE *filelist;
+	int intlist[15], ii;
+
+	//Open file for reading
+	filelist=fopen("list","r");
+
+	//Read all of file (assume we know how long file is)
+	for(ii=1; ii<=15; ii++){
+		fscanf(filelist,"%i",&intlist[ii-1]);
+		printf("%i %i\n",ii,intlist[ii-1]);
+	}
+
+	//Close file
+	fclose(filelist);
+
+	return(0);
+
+}

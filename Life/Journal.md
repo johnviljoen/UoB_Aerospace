@@ -1,0 +1,10 @@
+# Journal
+
+---
+
+> Links [[Helth]]
+
+> Contents
+
+---
+
